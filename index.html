@@ -76,13 +76,15 @@
             });
             $('#CallEmpInfo').click(function () {
                 $.ajax({
+                    type:"POST",
                     url: 'https://erp.datxanhmientrung.com/DirectRouter/index',
                     headers: {
                         'Authorization': 'Bearer ' + $('#AccessToken').val(),
                         'Content-Type':'application/json'
                     },
-                    data: {
-                        "action":"FrmFdReport","method":"qry","data":[
+                    data: "FrmFdReport",
+                    method:"qry",
+                    data:[
                             {  
                             "reportcode":"apiEmp1",
                             "limit":25,
@@ -91,8 +93,8 @@
                                 {"name": "aemployee", "value": "330000000095"}
                             ]
                             }
-                            ], "type":"rpc", "tid":1
-                    },
+                            ],
+                    tid:1,
                     //success: function (data) {
                     //    console.log(data);
                     //    $('#output').text(data);
@@ -118,3 +120,4 @@
 </html>
 
 
+Access-Control-Allow-Origin
