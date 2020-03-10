@@ -75,35 +75,53 @@
                 });
             });
             $('#CallEmpInfo').click(function () {
-                $.ajax({
-                    type:"POST",
-                    url: 'https://erp.datxanhmientrung.com/DirectRouter/index',
-                    headers: {
-                        'Authorization': 'Bearer ' + $('#AccessToken').val(),
-                        'Content-Type':'application/json'
-                    },
-                    data: "FrmFdReport",
-                    method:"qry",
-                    data:[
-                            {  
-                            "reportcode":"apiEmp1",
-                            "limit":25,
-                            "start":0,
-                            "queryFilters": [
-                                {"name": "aemployee", "value": "330000000095"}
-                            ]
-                            }
-                            ],
-                    tid:1,
-                    //success: function (data) {
-                    //    console.log(data);
-                    //    $('#output').text(data);
-                    //},
-                    cache: false
-                }).done(function (data) {
-                        console.log(data);
-                        $('#output').text(data);
-                });
+                // $.ajax({
+                //     type:"POST",
+                //     url: 'https://erp.datxanhmientrung.com/DirectRouter/index',
+                //     headers: {
+                //         'Authorization': 'Bearer ' + $('#AccessToken').val(),
+                //         'Content-Type':'application/json'
+                //     },
+                //     data: "FrmFdReport",
+                //     method:"qry",
+                //     data:[
+                //             {  
+                //             "reportcode":"apiEmp1",
+                //             "limit":25,
+                //             "start":0,
+                //             "queryFilters": [
+                //                 {"name": "aemployee", "value": "330000000095"}
+                //             ]
+                //             }
+                //             ],
+                //     tid:1,
+                //     //success: function (data) {
+                //     //    console.log(data);
+                //     //    $('#output').text(data);
+                //     //},
+                //     cache: false
+                // }).done(function (data) {
+                //         console.log(data);
+                //         $('#output').text(data);
+                // });
+                var xhttp = new XMLHttpRequest;
+                xhttp.open("POST", "https://erp.datxanhmientrung.com/DirectRouter/Index", true);
+                xhttp.setRequestHeader("Content-type", "application/json");
+                xhttp.setRequestHeader("Authorization", 'Bearer ' + $('#AccessToken').val());
+                xhttp.send("{action:'FrmFdReport', method: 'qry', data:[ { 'reportcode':'apiEmp1', 'limit':25, 'start':0, 'queryFilters': [ {'name': 'aemployee', 'value': '330000000095'} ] } ], tid: 9}");
+                xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var url = window.location.href,
+                        ss = url.split('?');
+
+                    alert('success');
+                }
+                };
+
+
+
+
+
             });
             function addQueryString(uri, parameters) {
                 var delimiter = (uri.indexOf('?') == -1) ? '?' : '&';
