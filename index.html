@@ -13,6 +13,7 @@
             <input id="Authorize" type="button" name="signin.AccessToken" value="Authorize" />
             <br />
             <input id="CallApi" name="submit.CallApi" value="Access Protected Resource API" type="button" />
+            <input id="CallEmpInfo" name="submit.CallEmpInfo" value="Access Protected Resource API" type="button" />
         </div>
         <div id="output">
         </div>
@@ -25,6 +26,7 @@
             var authorizeUri =rootAuthor + "/OAuth/Authorize";
             var tokenUri = rootAuthor + "/OAuth/Token";
             var apiUri = rootAuthor + "/api/me/get";
+            var empUri = rootAuthor + "/DirectRouter/index";
             var returnUri = 'https://app.xcrl.me/testImplicitGrant/welcome.html';
 
             $('#Authorize').click(function () {
@@ -72,7 +74,40 @@
                         $('#output').text(data);
                 });
             });
-
+            $('#CallEmpInfo').click(function () {
+                $.ajax({
+                    url: empUri,
+                  //  type:"POST"
+                    headers: {
+                        'Authorization': 'Bearer ' + $('#AccessToken').val(),
+                        'Content-Type':'application/json'
+                    },
+                    //beforeSend: function (xhr) {
+                    //    xhr.setRequestHeader('Authorization', 'Bearer ' + $('#AccessToken').val());
+                    //},
+                    dataType: 'json',
+                    data:{
+                        "action":"FrmFdReport","method":"qry","data":[
+                            {  
+                            "reportcode":"apiEmp1",
+                            "limit":25,
+                            "start":0,
+                            "queryFilters": [
+                                {"name": "aemployee", "value": "330000000095"}
+                            ]
+                            }
+                            ], "type":"rpc", "tid":1
+                    },
+                    //success: function (data) {
+                    //    console.log(data);
+                    //    $('#output').text(data);
+                    //},
+                    cache: false
+                }).done(function (data) {
+                        console.log(data);
+                        $('#output').text(data);
+                });
+            });
             function addQueryString(uri, parameters) {
                 var delimiter = (uri.indexOf('?') == -1) ? '?' : '&';
                 for (var parameterName in parameters) {
@@ -86,3 +121,5 @@
     </script>
 </body>
 </html>
+tvc://id=HRM_RP_NV_TRE&FD=<#from>&window=1&PLUONG=<#PRD>
+
