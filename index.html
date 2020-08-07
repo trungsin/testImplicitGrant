@@ -22,19 +22,19 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
     <script type="text/javascript">
         (function ($) {
-            var rootAuthor = "https://erp.datxanhmientrung.com";
+            var rootAuthor = "https://erp.khaitingroup.com";
             var authorizeUri =rootAuthor + "/OAuth/Authorize";
             var tokenUri = rootAuthor + "/OAuth/Token";
             var apiUri = rootAuthor + "/api/me/get";
             var empUri = rootAuthor + "/DirectRouter/index";
-            var returnUri = 'https://app.xcrl.me/testImplicitGrant/welcome.html';
+            var returnUri = '/welcome.html';
 
             $('#Authorize').click(function () {
                 var nonce = 'state';
 
                 var uri = addQueryString(authorizeUri, {
-                    'client_id': 'DXMT',
-                    //'client_secret': '741EAD27-84D7-460E-9EDF-0BC4F2CB7D8C',
+                    'client_id': 'KTG',
+                    'client_secret': 'KTG934C-6DFA-478A-B003-908CBDE701F0',
                     'redirect_uri': returnUri,
                     'state': nonce,
                     'scope': 'oauth, userinfo',
