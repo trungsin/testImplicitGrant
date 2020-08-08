@@ -10,10 +10,10 @@
         <div>
             Access Token<br />
             <input id="AccessToken" name="AccessToken" />
-            <input id="Authorize" type="button" name="signin.AccessToken" value="Authorize" />
+            <input id="Authorize" type="button" name="signin.AccessToken" value="Login by TVC" />
             <br />
-            <input id="CallApi" name="submit.CallApi" value="Access Protected Resource API" type="button" />
-            <input id="CallEmpInfo" name="submit.CallEmpInfo" value="Access Protected Resource API" type="button" />
+            <input id="CallApi" name="submit.CallApi" value="Call Get Me" type="button" />
+            <input id="CallEmpInfo" name="submit.CallEmpInfo" value="Call Infor EMP" type="button" />
         </div>
         <div id="output">
         </div>
@@ -33,8 +33,8 @@
                 var nonce = 'state';
 
                 var uri = addQueryString(authorizeUri, {
-                    'client_id': 'KTGT',
-                   // 'client_secret': 'KTG934C-6DFA-478A-B003-908CBDE701F0',
+                    'client_id': 'KTG',
+                    'client_secret': 'KTG934C-6DFA-478A-B003-908CBDE701F0',
                     'redirect_uri': returnUri,
                     'state': nonce,
                     'scope': 'oauth, userinfo',
